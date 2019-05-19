@@ -1,9 +1,36 @@
-var things = require('./things');
+var events = require('events');
+var util = require('util');
 
-// console.log("Hello World");
-// console.log(__dirname);
-// console.log(__filename);
+var Cars = function(model) {
+	this.model = model;
+};
 
-console.log(things.some_value);
-console.log(things.array_counter([1, 7, 99, 8, 45, 8]));
-console.log(things.multiply(5, 8));
+	util.inherits(Cars, events.EventEmitter);
+
+	var bmw = new Cars('BMW');
+	var vw = new Cars('VW');
+	var volvo = new Cars('Volvo');
+	var audi = new Cars('Audi');
+
+	var cars = [bmw, audi, vw, volvo];
+	cars.forEach(function(car) {
+		car.on('speed', function(text) {
+			console.log (car.model + "speed is - " + text);
+		});
+	});
+
+	bmw.emit('speed', '254,4 km');
+	vw.emit('speed', '354,4 km');
+
+
+
+
+
+
+// var myEmit = new events.EventEmitter();
+//
+// myEmit.on('some_event', function(text) {
+// 	console.log(text);
+// });
+//
+// myEmit.emit('some_event', 'Обработчик событий сработал!');
