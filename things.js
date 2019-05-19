@@ -3,9 +3,9 @@ var array_counter = function(array) {
 };
 
 var multiply = function(x, y) {
-	return
+	return `$(x) умножить $(y) равно $(x * y)`;
 };
 
 var some_value = 451;
 
-module.exports = array_counter;
+module.exports.array_counter = array_counter;
